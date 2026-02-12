@@ -1,0 +1,31 @@
+name: Invidious YouTube Trailers
+author: user
+parsers:
+  - name: InvidiousTrailerParser
+    version: 1
+    about: Searches Invidious instances for YouTube trailers by title and year
+    website: https://yewtu.be
+    outputPath: links.trailers
+    outputMap:
+      url: url
+      title: title
+      thumbnail: thumbnail
+      duration: duration
+      source: sourceName
+    jsonParser:
+      searchUrl: https://yewtu.be/api/v1/search?q={query}+trailer&type=video&fields=videoId,title,thumbnail,duration
+      results: 
+      id:
+        query: videoId
+      url:
+        query: videoId
+        urlTemplate: https://yewtu.be/watch?v={id}
+      title:
+        query: title
+      thumbnail:
+        query: videoId
+        urlTemplate: https://yewtu.be/vi/{id}/maxres.jpg
+      duration:
+        query: lengthSeconds
+      sourceName:
+        urlTemplate: Invidious
