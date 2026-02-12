@@ -3,8 +3,8 @@ author: user
 parsers:
   - name: InvidiousTrailerParser
     version: 1
-    about: Searches Invidious instances for YouTube trailers by title and year
-    website: https://yewtu.be
+    about: Searches Invidious for YouTube trailers by title. Uses invidious.vern.cc instance.
+    website: https://invidious.vern.cc
     outputPath: links.trailers
     outputMap:
       url: url
@@ -13,18 +13,18 @@ parsers:
       duration: duration
       source: sourceName
     jsonParser:
-      searchUrl: https://yewtu.be/api/v1/search?q={query}+trailer&type=video&fields=videoId,title,thumbnail,duration
+      searchUrl: https://invidious.vern.cc/api/v1/search?q={query}+trailer&type=video
       results: 
       id:
         query: videoId
       url:
         query: videoId
-        urlTemplate: https://yewtu.be/watch?v={id}
+        urlTemplate: https://invidious.vern.cc/watch?v={id}
       title:
         query: title
       thumbnail:
         query: videoId
-        urlTemplate: https://yewtu.be/vi/{id}/maxres.jpg
+        urlTemplate: https://invidious.vern.cc/vi/{id}/maxres.jpg
       duration:
         query: lengthSeconds
       sourceName:
