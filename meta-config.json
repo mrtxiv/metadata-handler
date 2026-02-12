@@ -1,0 +1,43 @@
+{
+  "name": "Metadata Handler (HTTP)",
+  "author": "user_8342",
+  "parsers": [
+    {
+      "name": "ResourceResolver",
+      "version": 1,
+      "about": "Internal logic for resource extraction via HTTP mapping.",
+      "website": "https://www.imdb.com",
+      "outputPath": "links",
+      "outputMap": {
+        "trailers": "url"
+      },
+      "detailUrlParser": {
+        "titlePathTemplate": "/title/{contentId}/",
+        "detailPathTemplate": "/video/{videoId}/",
+        "externalPathTemplate": "/video/{videoId}/",
+        "videoIdRegex": "/video/(vi\\d+)/",
+        "maxIds": 2,
+        "preferMimeTypes": ["MP4", "M3U8"],
+        "preferFormats": ["1080", "720", "480", "360", "SD"],
+        "request": {
+          "method": "GET",
+          "headers": {
+            "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            "accept-language": "en-US,en;q=0.9",
+            "referer": "https://www.imdb.com/title/{contentId}/",
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+          }
+        },
+        "detailRequest": {
+          "method": "GET",
+          "headers": {
+            "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            "accept-language": "en-US,en;q=0.9",
+            "referer": "https://www.imdb.com/video/{videoId}/",
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+          }
+        }
+      }
+    }
+  ]
+}
