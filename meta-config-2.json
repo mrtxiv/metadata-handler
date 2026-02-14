@@ -43,6 +43,10 @@
                     "360",
                     "SD"
                 ],
+                "urlOverrideParams": {
+                    "formats": "MPEG4",
+                    "format": "redirect"
+                },
                 "request": {
                     "method": "GET",
                     "headers": {
