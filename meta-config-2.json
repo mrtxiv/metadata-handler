@@ -1,0 +1,52 @@
+{
+    "name": "Metadata Handler (HTTP)",
+    "author": "user_8342",
+    "parsers": [
+        {
+            "name": "RTMetadataResolver",
+            "version": 1,
+            "about": "Internal logic for trailer metadata extraction via HTTP mapping.",
+            "website": "https://www.rottentomatoes.com",
+            "outputPath": "links",
+            "outputMap": {
+                "trailers": "url"
+            },
+            "detailUrlParser": {
+                "titlePathTemplate": "/m/{contentId}/",
+                "detailPathTemplate": "/m/{contentId}/videos/{videoId}/",
+                "externalPathTemplate": "/m/{contentId}/videos/{videoId}/",
+                "videoIdRegex": "data-public-id=\"([A-Za-z0-9_-]+)\"",
+                "maxIds": 3,
+                "preferMimeTypes": [
+                    "MP4",
+                    "M3U8"
+                ],
+                "preferFormats": [
+                    "1080",
+                    "720",
+                    "480",
+                    "360",
+                    "SD"
+                ],
+                "request": {
+                    "method": "GET",
+                    "headers": {
+                        "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+                        "accept-language": "en-US,en;q=0.9",
+                        "referer": "https://www.rottentomatoes.com/",
+                        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+                    }
+                },
+                "detailRequest": {
+                    "method": "GET",
+                    "headers": {
+                        "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+                        "accept-language": "en-US,en;q=0.9",
+                        "referer": "https://www.rottentomatoes.com/m/{contentId}/",
+                        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+                    }
+                }
+            }
+        }
+    ]
+}
