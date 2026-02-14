@@ -11,6 +11,21 @@
             "outputMap": {
                 "trailers": "url"
             },
+            "contentIdResolver": {
+                "url": "https://query.wikidata.org/sparql?format=json&query=SELECT%20%3FrtId%20WHERE%20%7B%20%3Fitem%20wdt%3AP345%20%22{contentId}%22%20.%20%3Fitem%20wdt%3AP1258%20%3FrtId%20.%20%7D",
+                "request": {
+                    "method": "GET",
+                    "headers": {
+                        "accept": "application/json",
+                        "user-agent": "RivusAddon/0.1 (metadata resolver)"
+                    }
+                },
+                "results": "results.bindings",
+                "id": {
+                    "query": "rtId.value",
+                    "regex": "m/(.+)"
+                }
+            },
             "detailUrlParser": {
                 "titlePathTemplate": "/m/{contentId}/",
                 "detailPathTemplate": "/m/{contentId}/videos/{videoId}/",
