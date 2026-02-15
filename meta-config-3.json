@@ -26,21 +26,8 @@
                 "tokenPath": "authToken"
             },
             "contentIdResolver": {
-                "url": "https://query.wikidata.org/sparql?format=json&query=SELECT%20%3FplexId%20WHERE%20%7B%20%3Fitem%20wdt%3AP345%20%22{contentId}%22%20.%20%3Fitem%20wdt%3AP11460%20%3FplexId%20.%20%7D%20LIMIT%201",
+                "url": "https://metadata.provider.plex.tv/library/metadata/matches?type={typeNum}&guid=com.plexapp.agents.imdb://{contentId}",
                 "request": {
-                    "method": "GET",
-                    "headers": {
-                        "accept": "application/json",
-                        "user-agent": "RivusAddon/0.1 (metadata resolver)"
-                    }
-                },
-                "results": "results.bindings",
-                "id": {
-                    "query": "plexId.value",
-                    "regex": "([a-f0-9]{24})"
-                },
-                "fallbackUrl": "https://metadata.provider.plex.tv/library/metadata/matches?type={typeNum}&guid=com.plexapp.agents.imdb://{contentId}",
-                "fallbackRequest": {
                     "method": "GET",
                     "headers": {
                         "accept": "application/json",
@@ -48,8 +35,8 @@
                         "X-Plex-Client-Identifier": "metadata-resolver-client"
                     }
                 },
-                "fallbackResults": "MediaContainer.Metadata",
-                "fallbackId": {
+                "results": "MediaContainer.Metadata",
+                "id": {
                     "query": "ratingKey",
                     "regex": "([a-f0-9]{24})"
                 }
