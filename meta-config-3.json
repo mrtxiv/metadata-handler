@@ -1,0 +1,72 @@
+{
+    "name": "Metadata Handler (HTTP)",
+    "author": "user_8342",
+    "parsers": [
+        {
+            "name": "Plex",
+            "version": 1,
+            "about": "HTTP-based content resolver plugin.",
+            "website": "https://metadata.provider.plex.tv",
+            "outputPath": "links",
+            "outputMap": {
+                "trailers": "url"
+            },
+            "tokenResolver": {
+                "url": "https://plex.tv/api/v2/users/anonymous",
+                "request": {
+                    "method": "POST",
+                    "headers": {
+                        "accept": "application/json",
+                        "X-Plex-Client-Identifier": "rivus-addon-trailers",
+                        "X-Plex-Product": "Plex Web",
+                        "X-Plex-Version": "4.141.1",
+                        "X-Plex-Platform": "Chrome"
+                    }
+                },
+                "tokenPath": "authToken"
+            },
+            "contentIdResolver": {
+                "url": "https://query.wikidata.org/sparql?format=json&query=SELECT%20%3FplexId%20WHERE%20%7B%20%3Fitem%20wdt%3AP345%20%22{contentId}%22%20.%20%3Fitem%20wdt%3AP11460%20%3FplexId%20.%20%7D%20LIMIT%201",
+                "request": {
+                    "method": "GET",
+                    "headers": {
+                        "accept": "application/json",
+                        "user-agent": "RivusAddon/0.1 (metadata resolver)"
+                    }
+                },
+                "results": "results.bindings",
+                "id": {
+                    "query": "plexId.value",
+                    "regex": "([a-f0-9]{24})"
+                }
+            },
+            "jsonParser": {
+                "searchUrl": "/library/metadata/{contentId}/extras",
+                "request": {
+                    "method": "GET",
+                    "headers": {
+                        "accept": "application/json",
+                        "X-Plex-Token": "{token}",
+                        "X-Plex-Client-Identifier": "rivus-addon-trailers"
+                    }
+                },
+                "results": "MediaContainer.Metadata",
+                "url": {
+                    "query": "Media.0.url"
+                },
+                "title": {
+                    "query": "title"
+                },
+                "description": {
+                    "query": "parentTitle"
+                },
+                "mimeType": {
+                    "query": "Media.0.container"
+                },
+                "format": {
+                    "query": "Media.0.videoResolution"
+                }
+            }
+        }
+    ]
+}
