@@ -38,6 +38,20 @@
                 "id": {
                     "query": "plexId.value",
                     "regex": "([a-f0-9]{24})"
+                },
+                "fallbackUrl": "https://metadata.provider.plex.tv/library/metadata/matches?type={typeNum}&guid=com.plexapp.agents.imdb://{contentId}",
+                "fallbackRequest": {
+                    "method": "GET",
+                    "headers": {
+                        "accept": "application/json",
+                        "X-Plex-Token": "{token}",
+                        "X-Plex-Client-Identifier": "metadata-resolver-client"
+                    }
+                },
+                "fallbackResults": "MediaContainer.Metadata",
+                "fallbackId": {
+                    "query": "ratingKey",
+                    "regex": "([a-f0-9]{24})"
                 }
             },
             "jsonParser": {
