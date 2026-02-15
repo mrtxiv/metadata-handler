@@ -23,13 +23,13 @@
                 "results": "results.bindings",
                 "id": {
                     "query": "rtId.value",
-                    "regex": "m/(.+)"
+                    "regex": "((?:m|tv)/.+)"
                 }
             },
             "detailUrlParser": {
-                "titlePathTemplate": "/m/{contentId}/",
-                "detailPathTemplate": "/m/{contentId}/videos/{videoId}/",
-                "externalPathTemplate": "/m/{contentId}/videos/{videoId}/",
+                "titlePathTemplate": "/{contentId}/",
+                "detailPathTemplate": "/{contentId}/videos/{videoId}/",
+                "externalPathTemplate": "/{contentId}/videos/{videoId}/",
                 "videoIdRegex": "data-public-id=\"([A-Za-z0-9_-]+)\"",
                 "maxIds": 3,
                 "preferMimeTypes": [
@@ -61,7 +61,7 @@
                     "headers": {
                         "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
                         "accept-language": "en-US,en;q=0.9",
-                        "referer": "https://www.rottentomatoes.com/m/{contentId}/",
+                        "referer": "https://www.rottentomatoes.com/{contentId}/",
                         "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
                     }
                 }
