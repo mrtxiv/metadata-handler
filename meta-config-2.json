@@ -3,7 +3,7 @@
     "author": "user_8342",
     "parsers": [
         {
-            "name": "RTMetadataResolver",
+            "name": "Rotten Tomatoes",
             "version": 1,
             "about": "HTTP-based content resolver plugin.",
             "website": "https://www.rottentomatoes.com",
