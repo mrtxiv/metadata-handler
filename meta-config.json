@@ -3,7 +3,7 @@
   "author": "user_8342",
   "parsers": [
     {
-      "name": "ResourceResolver",
+      "name": "IMDb",
       "version": 1,
       "about": "Internal logic for resource extraction via HTTP mapping.",
       "website": "https://www.imdb.com",
