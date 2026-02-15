@@ -27,6 +27,7 @@
             },
             "contentIdResolver": {
                 "url": "https://metadata.provider.plex.tv/library/metadata/matches?type={typeNum}&guid=com.plexapp.agents.imdb://{contentId}",
+                "fallbackUrl": "https://metadata.provider.plex.tv/library/metadata/matches?type={typeNum}&guid=imdb://{contentId}",
                 "request": {
                     "method": "GET",
                     "headers": {
@@ -38,7 +39,7 @@
                 "results": "MediaContainer.Metadata",
                 "id": {
                     "query": "ratingKey",
-                    "regex": "([a-f0-9]{24})"
+                    "regex": "([a-f0-9]{24}|[0-9]+)"
                 }
             },
             "jsonParser": {
